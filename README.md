@@ -27,7 +27,32 @@ docker build -t <aws-account-id>.dkr.ecr.<aws-region>.amazonaws.com/create-mock-
 ```
 
 ---
-  
+
+&nbsp;
+
+### Run the Docker image locally
+
+Run the Docker image locally to perform its task by:
+
+```sh
+docker run -e AWS_ACCESS_KEY_ID='<AWS_ACCESS_KEY_ID>' \
+  -e AWS_SECRET_ACCESS_KEY='<AWS_SECRET_ACCESS_KEY>' \
+  -e AWS_REGION='<AWS_REGION>' \
+  -e RESOURCE_GRP_NAME='<RESOURCE_GRP_NAME>' \
+  -e MOCK_CONTENT='<MOCK_CONTENT>' \
+  --name create_mock_file_job
+  <aws-account-id>.dkr.ecr.<aws-region>.amazonaws.com/create-mock-file-job \
+  /app/run-ssm-cmd-to-create-mock-file.sh
+```
+
+Then remove the stopped container to clean up your local environment:
+
+```sh
+docker rm create_mock_file_job
+```
+
+---
+
 &nbsp;
 
 ### Push the Docker image into the newly created Amazon ECR private repository

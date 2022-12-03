@@ -9,7 +9,7 @@
 echo $(date -u '+%Y-%m-%d %H:%M:%S') - Start send-command to create a mock file...
 aws ssm send-command \
     --document-name "create-mock-file" \
-    --parameters "mockContent='Mock Content'" \
+    --parameters "mockContent='${MOCK_CONTENT:-Mock Content}'" \
     --targets Key=resource-groups:Name,Values="$RESOURCE_GRP_NAME" \
     --document-version '$DEFAULT'
 echo $(date -u '+%Y-%m-%d %H:%M:%S') - Finish send-command to create a mock file.
